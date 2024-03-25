@@ -8,8 +8,8 @@ const userData = [
 ]
 
 const WineData = [
-    { winery: "Fottoria dei Barbi", wineName: "Brunello di Montalcino", region: "Montalcino", country: "Italy", style: "Red", grapes: "Sangiovese", vintage: 2016 },
-    { winery: "Pax Mahle Wines", wineName: "Sonoma-Hillsides", region: "Sonoma", country: "United-states", style: "Red", grapes: "Syrah", vintage: 2016 }
+    { winery: "Fattoria dei Barbi", wineName: "Brunello di Montalcino", region: "Montalcino", country: "Italy", style: "Red", grapes: "Sangiovese", vintage: 2016, image: "https://cdn.vinissimus.com/img/unsafe/p500x/plain/local:///prfmtgrande/vi/brufb19_anv800.png" },
+    { winery: "Pax Mahle Wines", wineName: "Sonoma-Hillsides", region: "Sonoma", country: "United-states", style: "Red", grapes: "Syrah", vintage: 2016, image: "https://thesourcingtable.com/cdn/shop/products/pax_sonoma_hillside_4d586314-c48a-488e-bd02-949d1ae7bb38_2000x.png?v=1703157406" }
 ]
 
 async function seed() {

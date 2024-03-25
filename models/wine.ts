@@ -9,6 +9,7 @@ interface IWines {
     style: string,
     vintage: number,
     grapes: string,
+    image: string,
     user: mongoose.Schema.Types.ObjectId
 }
 
@@ -20,6 +21,7 @@ const wineSchema: Schema<IWines> = new mongoose.Schema<IWines>({
     style: { type: String, required: true },
     vintage: { type: Number, required: true },
     grapes: { type: String, required: true },
+    image: { type: String, required: false },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 })
 
