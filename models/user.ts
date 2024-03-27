@@ -4,12 +4,24 @@ import uniqueValidator from "mongoose-unique-validator"
 import validator from 'validator'
 import mongooseHidden from 'mongoose-hidden'
 
+
 interface IUser {
     userName: string,
     firstName: string,
     lastName: string,
     email: string,
-    password: string
+    password: string,
+    myCave: [{
+        _id: number,
+        winery: string,
+        wineName: string,
+        region: string,
+        country: string,
+        style: string,
+        vintage: number,
+        grapes: string,
+        image: string
+        }]
 }
 
 const userSchema: Schema<IUser> = new mongoose.Schema<IUser>({
@@ -31,6 +43,16 @@ const userSchema: Schema<IUser> = new mongoose.Schema<IUser>({
             })
         }
     },
+    myCave:[{ 
+        winery: { type: String, required: true },
+        wineName: { type: String, required: true },
+        region: { type: String, required: true },
+        country: { type: String, required: true },
+        style: { type: String, required: true },
+        vintage: { type: Number, required: true },
+        grapes: { type: String, required: true },
+        image: { type: String, required: false },
+    }]
 })
 
 userSchema.pre('save', function hashPassword(next) {
@@ -49,7 +71,7 @@ export function checkPasswords(password: string, passwordConfirmation: string) {
     return password === passwordConfirmation
 }
 
-userSchema.plugin(mongooseHidden({ defaultHidden: { password: true, email: true, _id: true } }))
+userSchema.plugin(mongooseHidden({ defaultHidden: { password: true, } }))
 userSchema.plugin(uniqueValidator)
 
 export default mongoose.model<IUser>('User', userSchema)

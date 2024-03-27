@@ -26,6 +26,7 @@ async function seed() {
     const wines = await Wine.create(WineData)
 
     console.log("Here are the wines!");
+    console.log(wines);
 
     await mongoose.disconnect()
     console.log("disconnected");

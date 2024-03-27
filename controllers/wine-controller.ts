@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import Wines from "../models/wine"
 
-
 export async function getWines(req: Request, res: Response) {
     try {
-        const wines = await Wines.find();
+        const wines = await Wines.find().populate("user");
         res.send(wines)
     } catch (e) {
         res.send({ message: "There was a problem getting the Wines." })

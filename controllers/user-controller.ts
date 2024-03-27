@@ -49,6 +49,45 @@ export async function createUser(req: Request, res: Response) {
     }
 }
 
+export async function updateCave(req: Request, res: Response) {
+    console.log('HIT UPDATE CAVE ROUTE');
+
+    const userId = req.params.userId;
+    try {
+        // Find the user with the given userId
+        const foundUser = await Users.findById(userId);
+        if (!foundUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Create a new wine object based on the request body
+        const newWine = { ...req.body };
+
+        // Append the new wine object to the myCave array
+        foundUser.myCave.push(newWine);
+
+        // Save the updated user
+        await foundUser.save();
+
+        // Return the updated cave information
+        return res.status(200).json(foundUser.myCave);
+    } catch (error) {
+        console.error('Error updating cave:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+export async function getCaveWines(req: Request, res: Response) {
+    try {
+        const userId = req.params.userId
+        const foundWine = await Users.findById(userId)
+        res.send(foundWine)
+    } catch (e) {
+
+        res.send({ message: "wine not found. Did you provide a valid wineId?" })
+    }
+}
+
 export async function deleteUser(req: Request, res: Response) {
     try {
         const userId = req.params.userId

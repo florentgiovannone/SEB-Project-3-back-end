@@ -1,6 +1,6 @@
 import express from 'express'
 import { getWines, getwineById, createwine, deletewine, updatewine, } from '../controllers/wine-controller';
-import { login, getUser, getUserById, getUserByName, createUser, deleteUser, updateUser, getCurrentUser } from '../controllers/user-controller'
+import { login, getUser, getUserById, getUserByName, createUser, deleteUser, updateUser, getCurrentUser, updateCave, getCaveWines } from '../controllers/user-controller'
 import secureRoute from '../middleware/secureRoute';
 
 const router = express.Router()
@@ -16,18 +16,16 @@ router.route('/api/rouge/wines/:wineId').delete(secureRoute, deletewine)
 
 router.route('/api/rouge/wines/:wineId').put(secureRoute, updatewine)
 
-
-
-
-
 // ! Api routes for users
-router.route('/api/rouge/user').get(getUser)
-
 router.route('/api/rouge/user/:userId').get(getUserById)
 
 router.route('/api/rouge/user/name/:userNameId').get(getUserByName)
 
 router.route('/api/rouge/user').post(createUser)
+
+router.route('/api/rouge/user/cave/:userId').post(updateCave)
+
+router.route('/api/rouge/user/cave/:userId').get(getCaveWines)
 
 router.route('/api/rouge/user/:userId').delete(deleteUser)
 
