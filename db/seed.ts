@@ -3,8 +3,8 @@ import User from '../models/user'
 import Wine from "../models/wine"
 
 const userData = [
-    { userName: "Winemaster", firstName: "Dinul", lastName: "Haque", email: "princ3mo3@gmail.com", password: "Winei$life1" },
-    { userName: "wineLover", firstName: "Florent", lastName: "Giovannone", email: "f.giovannone@me.com", password: "Winei$life2" }
+    { userName: "Winemaster", firstName: "Dinul", lastName: "Haque", email: "princ3mo3@gmail.com", password: "Winei$life1", image: "https://imgur.com/Es2WsW6" },
+    { userName: "wineLover", firstName: "Florent", lastName: "Giovannone", email: "f.giovannone@me.com", password: "Winei$life2", image: "https://imgur.com/Es2WsW6" }
 ]
 
 const WineData = [

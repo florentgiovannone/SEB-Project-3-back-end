@@ -11,6 +11,7 @@ interface IUser {
     lastName: string,
     email: string,
     password: string,
+    image: string
     myCave: [{
         _id: number,
         winery: string,
@@ -43,6 +44,7 @@ const userSchema: Schema<IUser> = new mongoose.Schema<IUser>({
             })
         }
     },
+    image: { type: String, required: true },
     myCave:[{ 
         winery: { type: String, required: true },
         wineName: { type: String, required: true },
