@@ -35,4 +35,6 @@ router.route("/api/rouge/login").post(login)
 
 router.route('/api/rouge/user').get(secureRoute, getCurrentUser)
 
+router.route('/api/rouge/users').get(getUser)
+
 export default router

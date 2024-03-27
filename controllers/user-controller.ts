@@ -3,6 +3,7 @@ import Users, { checkPasswords, validatePassword } from "../models/user"
 import jwt from 'jsonwebtoken';
 import { SECRET } from "../config/environment";
 import formatValidationError from "../eroors/validation";
+import axios from 'axios'
 
 export async function getUser(req: Request, res: Response) {
     try {
