@@ -20,7 +20,7 @@ const WineData = [
     { winery: "Antonelli", wineName: "Sagrantino di Montefalco", region: "Umbria", country: "Italy", style: "Red", grapes: "Sagrantino", vintage: 2015, image: "https://i.postimg.cc/4dcrZ7th/Screen-Shot-2024-03-28-at-09-55-25-AM-removebg-preview.png" },
     { winery: "Angelo Negro Basarin", wineName: "Barbaresco", region: "Piemonte", country: "Italy", style: "Red", grapes: "Nebiolo", vintage: 2019, image: "https://i.postimg.cc/6qNFQWLb/Screen-Shot-2024-03-28-at-09-56-11-AM-removebg-preview.png" },
     { winery: "Bogle Vineyard", wineName: "Phantom", region: "California", country: "France", style: "Red", grapes: "Petit Syrah - Zinfandel", vintage: 2019, image: "https://i.postimg.cc/5tTZZqHV/Screen-Shot-2024-03-28-at-09-56-50-AM-removebg-preview.png" },
-   
+
 ]
 
 async function seed() {
