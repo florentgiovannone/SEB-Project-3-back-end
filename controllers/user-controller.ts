@@ -3,6 +3,7 @@ import Users, { checkPasswords, validatePassword } from "../models/user"
 import jwt from 'jsonwebtoken';
 import { SECRET } from "../config/environment";
 import formatValidationError from "../eroors/validation";
+import bcrypt from 'bcrypt';
 
 export async function getUser(req: Request, res: Response) {
     try {
@@ -98,14 +99,25 @@ export async function deleteUser(req: Request, res: Response) {
     }
 }
 
+export async function hashPassword(password: string) {
+    const salt = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
+}
+
 export async function updateUser(req: Request, res: Response) {
     try {
-        const userId = req.params.userId
-        const update = req.body
-        const updatedUser = await Users.findByIdAndUpdate(userId, update, { new: true })
-        res.send(updatedUser)
+        const userId = req.params.userId;
+        const update = req.body;
+
+        // If a new password is provided, hash it before saving
+        if (update.password) {
+            update.password = await hashPassword(update.password);
+        }
+
+        const updatedUser = await Users.findByIdAndUpdate(userId, update, { new: true });
+        res.send(updatedUser);
     } catch (e) {
-        res.send({ message: "There was a problem updating your user." })
+        res.send({ message: "There was a problem updating your user." });
     }
 }
 
@@ -141,5 +153,22 @@ export async function getCurrentUser(req: Request, res: Response) {
         res.status(200).send(res.locals.currentUser)
     } catch (e) {
         res.status(500).send({ message: "there was an error, please try again later." })
+    }
+}
+
+export async function verifyPassword(req: Request, res: Response) {
+    try {
+        const { password } = req.body;
+        const user = res.locals.currentUser;
+
+        const isValidPw = validatePassword(password, user.password);
+
+        if (isValidPw) {
+            res.send({ isPasswordCorrect: true });
+        } else {
+            res.send({ isPasswordCorrect: false });
+        }
+    } catch (e) {
+        res.status(500).send({ message: "There was an error, please try again later." });
     }
 }

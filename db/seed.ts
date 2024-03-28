@@ -3,8 +3,8 @@ import User from '../models/user'
 import Wine from "../models/wine"
 
 const userData = [
-    { userName: "Winemaster", firstName: "Dinul", lastName: "Haque", email: "princ3mo3@gmail.com", password: "Winei$life1", image: "https://imgur.com/Es2WsW6" },
-    { userName: "wineLover", firstName: "Florent", lastName: "Giovannone", email: "f.giovannone@me.com", password: "Winei$life2", image: "https://imgur.com/Es2WsW6" }
+    { userName: "Winemaster", firstName: "Dinul", lastName: "Haque", email: "princ3mo3@gmail.com", password: "Winei$life1", image: "https://imgur.com/Es2WsW6", lastPasswordChange: new Date() },
+    { userName: "wineLover", firstName: "Florent", lastName: "Giovannone", email: "f.giovannone@me.com", password: "Winei$life2", image: "https://imgur.com/Es2WsW6", lastPasswordChange: new Date() }
 ]
 
 const WineData = [
@@ -20,6 +20,8 @@ async function seed() {
     console.log("Remove existing data");
 
     const user = await User.create(userData)
+    console.log("Here are the users!");
+    console.log(user);
 
     WineData.forEach((wine: any) => wine.user = user[0])
 
