@@ -4,12 +4,12 @@ import Wine from "../models/wine"
 
 const userData = [
     { userName: "Winemaster", firstName: "Dinul", lastName: "Haque", email: "princ3mo3@gmail.com", password: "Winei$life1", image: "https://imgur.com/Es2WsW6", lastPasswordChange: new Date() },
-    { userName: "wineLover", firstName: "Florent", lastName: "Giovannone", email: "f.giovannone@me.com", password: "Winei$life2", image: "https://imgur.com/Es2WsW6", lastPasswordChange: new Date() }
+    { userName: "winelover", firstName: "Florent", lastName: "Giovannone", email: "f.giovannone@me.com", password: "Winei$life2", image: "https://imgur.com/Es2WsW6", lastPasswordChange: new Date() }
 ]
 
 const WineData = [
-    { winery: "Fattoria dei Barbi", wineName: "Brunello di Montalcino Riserva", region: "Tuscany", country: "Italy", style: "Red", grapes: "Sangiovese", vintage: 2016, image: "https://cdn.vinissimus.com/img/unsafe/p500x/plain/local:///prfmtgrande/vi/brufb19_anv800.png" },
-    { winery: "Fattoria dei Barbi", wineName: "Brunello di Montalcino", region: "Tuscany", country: "Italy", style: "Red", grapes: "Sangiovese", vintage: 2017, image: "https://i.postimg.cc/htyF0qch/Screen-Shot-2024-03-28-at-09-51-10-AM-removebg-preview.png" },
+    { winery: "Fattoria dei Barbi", wineName: "Brunello di Montalcino Riserva", region: "Tuscany", country: "Italy", style: "Red", grapes: "Sangiovese", vintage: 2016, image: "https://i.postimg.cc/50tv2dkM/Screen-Shot-2024-03-28-at-10-54-11-AM-removebg-preview.png" },
+    { winery: "Fattoria dei Barbi", wineName: "Brunello di Montalcino", region: "Tuscany", country: "Italy", style: "Red", grapes: "Sangiovese", vintage: 2017, image: "https://cdn.vinissimus.com/img/unsafe/p500x/plain/local:///prfmtgrande/vi/brufb19_anv800.png" },
     { winery: "Pax Mahle Wines", wineName: "Sonoma-Hillsides", region: "California, Sonoma", country: "United-states", style: "Red", grapes: "Syrah", vintage: 2016, image: "https://thesourcingtable.com/cdn/shop/products/pax_sonoma_hillside_4d586314-c48a-488e-bd02-949d1ae7bb38_2000x.png?v=1703157406" },
     { winery: "Sierra Cantabria", wineName: "Rioja Gran Reserva", region: "Rioja", country: "Spain", style: "Red", grapes: "Tempranillo", vintage: 2010, image: "https://cdn.vinissimus.com/img/unsafe/p500x/plain/local:///prfmtgrande/vi/sca14gr_anv800.png" },
     { winery: "Domaine Tortochot", wineName: "Gevrey Chambertain V. Vignes", region: "Burgundy", country: "France", style: "Red", grapes: "Pinot Noir", vintage: 2020, image: "https://grands-crus.net/wp-content/uploads/2022/10/tortochot-gevrey-chambertin-vieilles-vignes-2018.png" },
@@ -34,7 +34,7 @@ async function seed() {
     console.log("Here are the users!");
     console.log(user);
 
-    WineData.forEach((wine: any) => wine.user = user[0])
+    WineData.forEach((wine: any) => wine.user = user[1])
 
     const wines = await Wine.create(WineData)
 
