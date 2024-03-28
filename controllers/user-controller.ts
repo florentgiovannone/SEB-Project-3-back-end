@@ -5,9 +5,18 @@ import { SECRET } from "../config/environment";
 import formatValidationError from "../errors/validation";
 import bcrypt from 'bcrypt';
 
+export async function getUsers(req: Request, res: Response) {
+    try {
+        const users = await Users.find()
+        res.send(users)
+    } catch (e) {
+        res.send({ message: "There was a problem getting the users." })
+    }
+}
+
 export async function getUser(req: Request, res: Response) {
     try {
-        const user = await Users.find(req.body)
+        const user = await Users.find()
         res.send(user)
     } catch (e) {
         res.send({ message: "There was an error" })
