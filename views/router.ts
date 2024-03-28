@@ -1,6 +1,6 @@
 import express from 'express'
 import { getWines, getwineById, createwine, deletewine, updatewine, } from '../controllers/wine-controller';
-import { login, getUser, getUserById, getUserByName, createUser, deleteUser, updateUser, getCurrentUser, updateCave, getCaveWines } from '../controllers/user-controller'
+import { login, getUser, getUserById, getUserByName, createUser, deleteUser, updateUser, getCurrentUser, updateCave, getCaveWines, verifyPassword } from '../controllers/user-controller'
 import secureRoute from '../middleware/secureRoute';
 
 const router = express.Router()
@@ -35,6 +35,6 @@ router.route("/api/rouge/login").post(login)
 
 router.route('/api/rouge/user').get(secureRoute, getCurrentUser)
 
-router.route('/api/rouge/users').get(getUser)
+router.route('/api/rouge/user/verify-password').post(secureRoute, verifyPassword)
 
 export default router

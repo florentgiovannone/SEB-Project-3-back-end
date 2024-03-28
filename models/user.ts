@@ -12,6 +12,7 @@ interface IUser {
     email: string,
     password: string,
     image: string
+    lastPasswordChange: Date,
     myCave: [{
         _id: number,
         winery: string,
@@ -22,6 +23,8 @@ interface IUser {
         vintage: number,
         grapes: string,
         image: string
+        
+
         }]
 }
 
@@ -45,6 +48,9 @@ const userSchema: Schema<IUser> = new mongoose.Schema<IUser>({
         }
     },
     image: { type: String, required: true },
+
+    lastPasswordChange: { type: Date, default: Date.now },
+
     myCave:[{ 
         winery: { type: String, required: true },
         wineName: { type: String, required: true },
@@ -58,12 +64,12 @@ const userSchema: Schema<IUser> = new mongoose.Schema<IUser>({
 })
 
 userSchema.pre('save', function hashPassword(next) {
-
-    console.log(this.password)
-    this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync())
-    console.log(this.password)
-    next()
-})
+    if (this.isModified('password')) {
+        this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync());
+        this.lastPasswordChange = new Date();
+    }
+    next();
+});
 
 export function validatePassword(loginPlaintextPassword: string, originalHashedPassword: string) {
     return bcrypt.compareSync(loginPlaintextPassword, originalHashedPassword);
