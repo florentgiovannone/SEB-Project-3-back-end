@@ -37,4 +37,6 @@ router.route('/api/rouge/user').get(secureRoute, getCurrentUser)
 
 router.route('/api/rouge/user/verify-password').post(secureRoute, verifyPassword)
 
+router.route('/api/rouge/users').get(getUser)
+
 export default router
