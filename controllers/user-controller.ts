@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Users, { checkPasswords, validatePassword } from "../models/user"
 import jwt from 'jsonwebtoken';
 import { SECRET } from "../config/environment";
-import formatValidationError from "../eroors/validation";
+import formatValidationError from "../errors/validation";
 import bcrypt from 'bcrypt';
 
 export async function getUser(req: Request, res: Response) {
